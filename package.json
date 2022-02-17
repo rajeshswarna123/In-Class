@@ -2,6 +2,7 @@
   "name": "in-class-app",
   "version": "1.0.0",
   "description": "",
+  "private": true,
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,10 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/rajeshswarna123/In-Class.git"
   },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/rajeshswarna123/In-Class/issues"
-  },
-  "homepage": "https://github.com/rajeshswarna123/In-Class#readme"
+  "dependencies": {
+    "express": "~4.17.3"
+  }
 }
