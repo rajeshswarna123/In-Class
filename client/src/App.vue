@@ -1,17 +1,16 @@
 <script setup la
-  components: { Messages },
-  components: { Nav },ng="ts">
+  components: { Messages },{ Nav },ng="ts">
 import Nav from './components/Nav.vue';
 import Messages from './pages/Messages.vue';
 
 </script>
 
 <template>
-  <Nav >
+  <Nav />
   <h1 class="title">
     Praying Ukraine - Somthing Something
   </h1>
-  <Messages >
+  <Messages />
 </template>
 
 <style>
