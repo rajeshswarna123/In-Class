@@ -26,7 +26,7 @@ export const list: User[] = [
         password: 'long table',
         email: 'jhon@doe.com',
         pic: 'https://randomuser.me/api/portraits/men/2.jpg',
-        id: 1,
+        id: 2,
     },
     {
         firstName: 'Kamala',
@@ -35,6 +35,6 @@ export const list: User[] = [
         password: 'password',
         email: 'kamala@whitehouse.org',
         pic: 'https://randomuser.me/api/portraits/women/3.jpg',
-        id: 1,
+        id: 3,
     },
 ];
