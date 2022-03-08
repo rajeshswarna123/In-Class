@@ -1,7 +1,6 @@
 <script lang="ts">
 import { ref, reactive, onMounted } from 'vue';
 
-import Messages from '../components/Messages.vue';
 
     const message = ref( 'Hello Vue!' );
     const currentTab = ref( 'All' );
@@ -103,8 +102,6 @@ import Messages from '../components/Messages.vue';
                                 </div>
                             </div>
                         </div>
-
-                        <Messages />
                        
 
                     </div>
