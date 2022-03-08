@@ -32,6 +32,7 @@ jobs:
     - name: Copy static files
       run: |
           cp -a client/dist/. dist/
+          cp composer.json dist/
           
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@v4.2.3
