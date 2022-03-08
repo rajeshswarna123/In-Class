@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import { RouterLink } from "vue-router";
 import LoginBadge from './LoginBadge.vue';
+import Messages from './Messages.vue';
 
     const isOpen = ref(false);
 </script>
@@ -53,6 +54,9 @@ import LoginBadge from './LoginBadge.vue';
                         <div class="navbar-item">
                             <login-badge />
                         </div>
+
+                        <messages />
+
                         <div class="navbar-item">
                             <div class="field is-grouped">
                                 <p class="control">
@@ -67,25 +71,7 @@ import LoginBadge from './LoginBadge.vue';
                                         </span>
                                     </a>
                                 </p>
-                                <p class="control">
-                                    <a class="button is-primary"
-                                        href="https://github.com/jgthms/bulma/releases/download/0.9.3/bulma-0.9.3.zip">
-                                        <span class="icon">
-                                            <i class="fas fa-download"></i>
-                                        </span>
-                                        <span>Download</span>
-                                    </a>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="navbar-item">
-                            <div class="buttons">
-                                <router-link class="button is-primary" to="/signup">
-                                    Sign up
-                                </router-link>
-                                <router-link class="button is-light" to="/login">
-                                    Log In 
-                                </router-link>
+                                
                             </div>
                         </div>
                     </div>
