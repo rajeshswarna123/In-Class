@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { RouterLink } from "vue-router";
+import LoginBadge from './LoginBadge.vue';
 
     const isOpen = ref(false);
 </script>
@@ -48,7 +49,10 @@ import { RouterLink } from "vue-router";
                             </div>
                         </div>
                     </div>
-                    <div class="navbar-end">
+                    <div class="navbar-end">                        
+                        <div class="navbar-item">
+                            <login-badge />
+                        </div>
                         <div class="navbar-item">
                             <div class="field is-grouped">
                                 <p class="control">

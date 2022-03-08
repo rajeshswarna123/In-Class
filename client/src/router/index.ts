@@ -29,7 +29,7 @@ const router : Router = createRouter({
 })
 
 router.beforeEach((to, form) =>{
-    if(['/messages'].includes(to.path)){
+    if(['/messages', '/wall', '/feed'].includes(to.path)){
         if(!session.user){
             router.push('/login');
         }
