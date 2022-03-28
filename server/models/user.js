@@ -31,7 +31,20 @@ const list = [
 ];
 
 function get(id){
-    return list.find(u=>u.id == parseInt(id));
+    return {...list.find(u=>u.id == parseInt(id)), password: undefined};
+}
+
+function remove(id){
+    const index = list.findIndex(u=>u.id == parseInt(id));
+    const user = list.splice(index, 1);
+    return {...user[0], password: undefined};
+}
+
+function update(id, updatedUser){
+    const index = list.findIndex(u=>u.id == parseInt(id));
+    const user = list[index];
+    updatedUser = list[index] = {...user, ...updatedUser}
+    return {...user[0], password: undefined};
 }
 
 module.exports = {
@@ -39,9 +52,14 @@ module.exports = {
         user.id = ++hieghstId;
 
         list.push(user);
-        return user;
+        return {...user, password:undefined};
+    },
+    remove,
+    update,
+    get list(){
+        return list.map(u=>({...u, password: undefined}));
     }
 }
 
-module.exports.list = list;
+// module.exports.list = () => list.map(u=>({...u, password: undefined}));
 module.exports.get = get;
