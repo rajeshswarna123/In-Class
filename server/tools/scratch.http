@@ -1,0 +1,19 @@
+es (14 sloc)  334 Bytes
+   
+http://localhost:3000
+
+###
+GET http://localhost:3000/api/users/
+
+###
+POST http://localhost:3000/api/users
+Content-Type: application/json
+
+{
+  "firstName": "Donald",
+  "lastName": "Christian",
+  "handle": "newpaltz_benevolent",
+  "password": "hugo",
+  "email": "jhon@doe.com",
+  "pic": "https://randomuser.me/api/portraits/men/2.jpg"
+}

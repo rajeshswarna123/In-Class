@@ -10,6 +10,8 @@ app
     // .use('/', express.static('server/public/'))
     .use('/', express.static(__dirname +'/public/'))
 
+    .use(express.json())
+
     .get('/api/', (req, res) =>{
         res.send('You are on the homepage')
     })

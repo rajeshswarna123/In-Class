@@ -1,3 +1,5 @@
+let hieghstId = 3;
+
 const list = [
     {
         firstName: 'John',
@@ -30,6 +32,15 @@ const list = [
 
 function get(id){
     return list.find(u=>u.id == parseInt(id));
+}
+
+module.exports = {
+    create(user) {
+        user.id = ++hieghstId;
+
+        list.push(user);
+        return user;
+    }
 }
 
 module.exports.list = list;
