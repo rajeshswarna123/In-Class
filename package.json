@@ -14,7 +14,8 @@
     "url": "git+https://github.com/rajeshswarna123/In-Class.git"
   },
   "dependencies": {
-    "express": "~4.17.3"
+    "express": "~4.17.3",
+    "dotenv": "^16.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"

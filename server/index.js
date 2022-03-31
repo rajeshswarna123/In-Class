@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express')
 const res = require('express/lib/response')
 
@@ -15,7 +16,7 @@ app
     .use(express.json())
 
     .get('/api/', (req, res) =>{
-        res.send('You are on the homepage')
+        res.send('You are at the root of the API. For the best class ever - '+ process.env.BEST_CLASS_EVER)
     })
     .use('/api/users', usersController)
 
