@@ -4,7 +4,9 @@ const res = require('express/lib/response')
 const usersController = require('./controllers/users')
 
 const app = express()
-const port = 3000
+const port = process.env.PORT || 3000;
+
+console.log(process.env);
 
 app
     // .use('/', express.static('server/public/'))
