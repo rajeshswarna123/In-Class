@@ -1,4 +1,4 @@
-const userModel = require('./user')
+const userModel = require('./user');
 
 let hieghstId = 3;
 
@@ -29,36 +29,45 @@ const list = [
     },
 ];
 
+const includeUser = post => ({ ...post, user: userModel.get(post.owner) });
+
 function get(id){
-    return {...list.find(x=>x.id == parseInt(id)), user: userModel.get(x.owner)};
+    const post = list.find(x => x.id === parseInt(id));
+    if(!post){
+        throw { status: 404, message: 'Post not found' };
+    }
+    return includeUser(post) ;
 }
 
 function remove(id){
-    const index = list.findIndex(x=>x.id == parseInt(id));
-    const post = list.splice(index, 1);
-    return {...post[0], user: userModel.get(post[0].owner)};
+    const index = list.findIndex(x => x.id === parseInt(id));
+    const post = list.splice(index,1);
+    
+    return includeUser(post[0]);
 }
 
-function update(id, updatedPost){
-    const index = list.findIndex(x=>x.id == parseInt(id));
-    const post = list[index];
-    updatedPost = list[index] = {...post, ...updatedPost}
-    return {...post[0], user: userModel.get(x.owner)};
+function update(id, newPost){
+    const index = list.findIndex(x => x.id === parseInt(id));
+    const oldPost = list[index];
+
+    newPost = list[index] = { ...oldPost, ...newPost };
+
+    //console.log(list);
+    
+    return includeUser(newPost);
 }
 
 module.exports = {
-    create(user) {
-        user.id = ++hieghstId;
+    create(post) {
+        post.id = ++hieghstId;
 
-        list.push(user);
-        return {...user, password:undefined};
+        list.push(post);
+        return  includeUser(post);
     },
     remove,
     update,
     get list(){
-        return list.map(u=>({...u, password: undefined}));
+        return list.map(x=> includeUser(x) );
     }
 }
-
-// module.exports.list = () => list.map(u=>({...u, password: undefined}));
 module.exports.get = get;
