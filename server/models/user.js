@@ -42,7 +42,7 @@ function remove(id){
     return {...user[0], password: undefined};
 }
 
-function update(id, updatedUser){
+async function update(id, updatedUser){
     const index = list.findIndex(u=>u.id == parseInt(id));
     const user = list[index];
     
