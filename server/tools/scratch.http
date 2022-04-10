@@ -45,3 +45,6 @@ Content-Type: application/json
   "email": "life@enjoy.com",
   "pic": "fullest"
 }
+
+###
+POST http://localhost:3001/api/users/seed
