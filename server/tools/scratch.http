@@ -11,6 +11,9 @@ GET http://localhost:3001/api/users/1
 Authorization: "bearer token"
 
 ###
+GET http://localhost:3001/api/users/handle/johndoe
+
+###
 DELETE http://localhost:3001/api/users/1
 
 ###

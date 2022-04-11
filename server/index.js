@@ -41,6 +41,7 @@ app
 
     .use((err, req, res, next) => {
       console.error(err);
+      
       res .status(err.statusCode || 500)
             .send({ errors: [ err.message ?? 'Internal server error' ] });
     })
