@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { db, isConnected, ObjectId } = require('./mongo');
 
-const collection = db.db("gratitude").collection("users");
+const collection = db.db("postCluster").collection("users");
 
 let hieghstId = 3;
 
@@ -70,7 +70,7 @@ async function update(id, updatedUser){
 
 async function login(email, password){
     const user = await collection.findOne({ email });
-
+    console.log(user);
     if(!user) 
         throw {status: 404, message: "User not found"};
 
@@ -98,7 +98,9 @@ function fromToken(token){
 }
 
 function seed(){
-    return collection.insertMany(list);
+    const newList = [...list];
+    newList.forEach(item=>item.password = bcrypt.hashSync(item.password, +process.env.SALT_ROUNDS));
+    return collection.insertMany(newList);
 }
 
 module.exports = {

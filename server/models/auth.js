@@ -1,8 +1,8 @@
 const res = require("express/lib/response");
 
 module.exports = {
-    requireAuth(){
-        if(!this.req.user){
+    requireAuth(req, res, next){
+        if(!req.user){
             next({status: 401, message: "Unauthorized"});
         }
         else{

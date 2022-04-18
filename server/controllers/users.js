@@ -34,7 +34,7 @@ app
         //res.send(user);
 
     })
-    .post('/', requireAuth, (req, res) => {
+    .post('/', (req, res,next) => {
         userModel.create(req.body)
         .then(user => {
             res.status(CREATED_STATUS).send(user);

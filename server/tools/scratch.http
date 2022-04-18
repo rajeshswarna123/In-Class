@@ -4,38 +4,39 @@ http://localhost:3001
 
 ###
 GET http://localhost:3001/api/users
-Authorization: "bearer token"
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjU5YmQ5YjgyZDFlOTllNzljNTc4ZWYiLCJmaXJzdE5hbWUiOiJSYWplc2giLCJsYXN0TmFtZSI6IlN3YXJuYSIsImhhbmRsZSI6InN1bm55IiwiZW1haWwiOiJzdW5ueUBrYXRlLmNvbSIsInBpYyI6Imh0dHBzOi8vcmFuZG9tdXNlci5tZS9hcGkvcG9ydHJhaXRzL21lbi8yLmpwZyIsImlkIjo0LCJpYXQiOjE2NTAwNDg1MDR9.xFbmWSRhd9RxEpu3qOJV5WraeaySV6N3Ig-KT6HXQGA
 
 ###
-GET http://localhost:3001/api/users/1
-Authorization: "bearer token"
+GET http://localhost:3001/api/users/6259bd9b82d1e99e79c578ef
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjU5YmQ5YjgyZDFlOTllNzljNTc4ZWYiLCJmaXJzdE5hbWUiOiJSYWplc2giLCJsYXN0TmFtZSI6IlN3YXJuYSIsImhhbmRsZSI6InN1bm55IiwiZW1haWwiOiJzdW5ueUBrYXRlLmNvbSIsInBpYyI6Imh0dHBzOi8vcmFuZG9tdXNlci5tZS9hcGkvcG9ydHJhaXRzL21lbi8yLmpwZyIsImlkIjo0LCJpYXQiOjE2NTAwNDg1MDR9.xFbmWSRhd9RxEpu3qOJV5WraeaySV6N3Ig-KT6HXQGA 
 
 ###
 GET http://localhost:3001/api/users/handle/johndoe
 
 ###
-DELETE http://localhost:3001/api/users/1
+DELETE http://localhost:3001/api/users/625878b0e6935ef1cba8451b
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjU5YmQ5YjgyZDFlOTllNzljNTc4ZWYiLCJmaXJzdE5hbWUiOiJSYWplc2giLCJsYXN0TmFtZSI6IlN3YXJuYSIsImhhbmRsZSI6InN1bm55IiwiZW1haWwiOiJzdW5ueUBrYXRlLmNvbSIsInBpYyI6Imh0dHBzOi8vcmFuZG9tdXNlci5tZS9hcGkvcG9ydHJhaXRzL21lbi8yLmpwZyIsImlkIjo0LCJpYXQiOjE2NTAwNDg1MDR9.xFbmWSRhd9RxEpu3qOJV5WraeaySV6N3Ig-KT6HXQGA 
 
 ###
 POST http://localhost:3001/api/users
 Content-Type: application/json
 
 {
-  "firstName": "Donald",
-  "lastName": "Christian",
-  "handle": "newpaltz_benevolent",
-  "password": "hugo",
-  "email": "jhon@doe.com",
+  "firstName": "Rajesh",
+  "lastName": "Swarna",
+  "handle": "sunny",
+  "password": "password",
+  "email": "sunny@kate.com",
   "pic": "https://randomuser.me/api/portraits/men/2.jpg"
 }
 
 ###
-PATCH  http://localhost:3001/api/users/2
+PATCH  http://localhost:3001/api/users/625878b0e6935ef1cba8451a
 Content-Type: application/json
-Authorization: "bearer token"
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjU5YmQ5YjgyZDFlOTllNzljNTc4ZWYiLCJmaXJzdE5hbWUiOiJSYWplc2giLCJsYXN0TmFtZSI6IlN3YXJuYSIsImhhbmRsZSI6InN1bm55IiwiZW1haWwiOiJzdW5ueUBrYXRlLmNvbSIsInBpYyI6Imh0dHBzOi8vcmFuZG9tdXNlci5tZS9hcGkvcG9ydHJhaXRzL21lbi8yLmpwZyIsImlkIjo0LCJpYXQiOjE2NTAwNDg1MDR9.xFbmWSRhd9RxEpu3qOJV5WraeaySV6N3Ig-KT6HXQGA
 
 {
-  "lastName": "Sunny",
+  "lastName": "Shiva",
   "email": "life@enjoy.com",
   "password": "fullest"
 }
@@ -45,8 +46,8 @@ POST http://localhost:3001/api/users/login
 Content-Type: application/json
 
 {
-  "email": "life@enjoy.com",
-  "pic": "fullest"
+  "email": "sunny@kate.com",
+  "password": "password"
 }
 
 ###
