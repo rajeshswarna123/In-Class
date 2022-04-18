@@ -48,6 +48,12 @@ async function remove(id){
     return includeUser(post.value);
 }
 
+async function getWall(handle){
+    const posts = await collection.find({ owner: handle }).toArray();
+
+    return Promise.all( posts.map(x=> includeUser(x) ) );
+}
+
 async function update(id, newPost){
     newPost= await collection.findOneAndUpdate(
         { _id: ObjectId(id) }, 
@@ -58,6 +64,10 @@ async function update(id, newPost){
     //console.log(list);
     
     return includeUser(newPost.value);
+}
+
+function seed(){
+    return collection.insertMany(list);
 }
 
 module.exports = {
@@ -74,6 +84,8 @@ module.exports = {
     async getList(){
         const posts = await collection.find({}).toArray();
         return Promise.all(posts.map(async x=> await includeUser(x)));
-    }
+    },
+    getWall,
+    seed,
 }
 module.exports.get = get;
