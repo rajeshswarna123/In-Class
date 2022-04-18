@@ -17,6 +17,12 @@ app
     // .use('/', express.static('server/public/'))
     .use('/', express.static(__dirname +'/public/'))
 
+    .use(function(req, res, next) {
+      res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+      res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+      next();
+    })
+    
     .use(express.json())
 
     .use((req, res, next) => {
@@ -37,7 +43,7 @@ app
         res.send('You are at the root of the API. For the best class ever - '+ process.env.BEST_CLASS_EVER)
     })
     .use('/api/users', usersController)
-    .use('/api/posts', requireAuth, postsController)
+    .use('/api/posts', /*requireAuth,*/ postsController)
 
     .use((err, req, res, next) => {
       console.error(err);
