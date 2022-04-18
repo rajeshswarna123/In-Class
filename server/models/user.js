@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { db, isConnected, ObjectId } = require('./mongo');
 
-const collection = db.db("gratitude").collection("users");
+const collection = db.db("postCluster").collection("users");
 
 let hieghstId = 3;
 
@@ -38,6 +38,13 @@ const list = [
 
 async function get(id){
     const user = await collection.findOne({ _id: new ObjectId(id) });
+    if(!user) throw {status: 404, message: "User not found"};
+    return { ...user, password: undefined };
+}
+
+async function getByHandle(handle){
+    const user = await collection.findOne({ handle });
+    if(!user) throw {status: 404, message: "User not found"};
     return { ...user, password: undefined };
 }
 
@@ -47,16 +54,23 @@ async function remove(id){
 }
 
 async function update(id, updatedUser){
-    const index = list.findIndex(u=>u.id == parseInt(id));
-    const user = list[index];
     
-    updatedUser = list[index] = {...user, ...updatedUser}
-    return {...user[0], password: undefined};
+    if(updatedUser.password){
+        updatedUser.password = await bcrypt.hash(updatedUser.password, 10);
+    }
+    
+    updatedUser = await collection.findOneAndUpdate(
+        { _id: new ObjectId(id) },
+        { $set: updatedUser },
+        {returnDocumet: 'after'}
+    );
+    
+    return {...updatedUser, password: undefined};
 }
 
 async function login(email, password){
-    const user = list.find(u=>u.email == email);
-
+    const user = await collection.findOne({ email });
+    console.log(user);
     if(!user) 
         throw {status: 404, message: "User not found"};
 
@@ -84,7 +98,9 @@ function fromToken(token){
 }
 
 function seed(){
-    return collection.insertMany(list);
+    const newList = [...list];
+    newList.forEach(item=>item.password = bcrypt.hashSync(item.password, +process.env.SALT_ROUNDS));
+    return collection.insertMany(newList);
 }
 
 module.exports = {
@@ -93,15 +109,21 @@ module.exports = {
     async create(user) {
         user.id = ++hieghstId;
 
+        if(!user.handle){
+            throw {status: 400, message: "Handle is required"};
+        }
         user.password = await bcrypt.hash(user.password, +process.env.SALT_ROUNDS);  
+        console.log(user);
 
-        list.push(user);
-        return {...user, password:undefined};
+        const result = await collection.insertOne(user);
+        user = await get(result.insertedId);
+        return user;
     },
     remove,
     update,
     login,
     fromToken,
+    getByHandle,
     async getList(){
         return (await collection.find().toArray()).map(x=> ({...x, password: undefined }) );
     }

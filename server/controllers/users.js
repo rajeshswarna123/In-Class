@@ -16,6 +16,15 @@ app
         }).catch(next);
         //res.send(userModel.list);
     })
+    .get('/handle/:handle', (req, res, next) => {
+        userModel.getByHandle(req.params.handle)
+        .then(user => {
+            res.send(user);
+        }).catch(next);
+        //const user = userModel.get(req.params.id);
+        //res.send(user);
+
+    })
     .get('/:id', (req, res, next) => {
         userModel.get(req.params.id)
         .then(user => {
@@ -25,7 +34,7 @@ app
         //res.send(user);
 
     })
-    .post('/', requireAuth, (req, res) => {
+    .post('/', (req, res,next) => {
         userModel.create(req.body)
         .then(user => {
             res.status(CREATED_STATUS).send(user);
