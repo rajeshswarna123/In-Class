@@ -1,9 +1,10 @@
 <script setup lang="ts">
     import { usePosts } from "../models/posts";    
     import PostView from "../components/PostView.vue";
-
+    import { useRoute } from "vue-router";
+    const route = useRoute();
     const posts = usePosts();
-    posts.fetchPosts();
+    posts.fetchPosts(route.params.handle as string);
 
     const currentTab = "All";
     const prompt = "What's on your mind?";

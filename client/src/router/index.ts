@@ -11,11 +11,12 @@ import {useSession} from "../models/session";
 // We'll talk about nested routes later.
 const routes: RouteRecordRaw[] = [
   { path: '/', component: Home },
-  { path: '/about', component: Generic, props: {title: 'About Page!'} },
-  { path: '/contact', component: Generic, props: {title: 'Contact Page!'} },
-  { path: '/signup', component: Generic, props: {title: 'SignUp Page!'} },
+  { path: '/about', component: Generic, props: { title: 'About Page!' } },
+  { path: '/contact', component: Generic, props: { title: 'Contact Page!' } },
   { path: '/login', component: Login },
-  { path: '/messages', component: () => import("../pages/Wall.vue") },
+  { path: '/signup', component: Generic, props: { title: 'Signup Page!' } },
+  { path: '/wall/:handle?', component: () => import('../pages/Wall.vue') },
+  { path: '/hidden', component: Generic, props: { title: 'You reached the hidden Page!' } },
 ]
 
 // 3. Create the router instance and pass the `routes` option
