@@ -4,7 +4,7 @@ import Home from '../pages/Home.vue'
 // import Messages from '../pages/Messages.vue'
 import Generic from "../pages/Generic.vue"
 import Login from "../pages/Login.vue"
-import session from "../models/session"
+import {useSession} from "../models/session";
 
 // 2. Define some routes
 // Each route should map to a component.
@@ -29,9 +29,19 @@ const router : Router = createRouter({
 })
 
 router.beforeEach((to, form) =>{
-    if(['/messages', '/wall', '/feed'].includes(to.path)){
-        if(!session.user){
-            router.push('/login');
+    const session = useSession();
+
+    if(session.destinationUrl == null && to.path != '/login') {
+        session.destinationUrl = to.path;
+    }
+    console.log({ to });
+    const protectedUrls = ['/messages', '/wall', '/feed', '/hidden'];
+    console.log({ protectedUrls });
+
+    if (protectedUrls.includes(to.path)) { // list of paths that require login
+        console.log('requires login');
+        if (!session.user) {
+            return '/login';
         }
     }
 })

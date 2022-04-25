@@ -1,28 +1,43 @@
-import { reactive } from "vue";
-
 import router from "../router";
 import * as users from "../models/user";
+import { api } from "./myFetch";
+import { useMessages } from "./messages";
+import { defineStore } from "pinia";
 
 
-const session = reactive({
-    user: null as users.User | null,
+export const useSession = defineStore('session', {
+    state: () => ({
+        user: null as users.User | null,
+        destinationUrl: null as string | null,
+    }),
+    actions: {
+        async Login(email: string, password: string) {
+        
+        const messages =useMessages();
+        try{
+            const user = await api("users/login", { email, password });
+            messages.notifications.push({
+                type: "success",
+                message: `Welcome ${user.firstName}`,
+            })
+            this.user = user;
+            router.push('/messages'); 
+        }
+        catch(error: any){
+            messages.notifications.push({
+                type: "error",
+                message: error.message,
+            })
+            console.table(messages.notifications);
+        }
+        
+        },
+
+        Logout() {
+            this.user = null;
+            router.push('/login');
+        },
+
+    
+    },
 })
-
-export async function Login(handle: string, password: string) {
-    const user = users.list.find(u => u.handle === handle);
-
-    if (!user) {
-        throw { message: "User not found" };
-    }
-    if(user.password !== password) {
-        throw { message: "Incorrect password" };
-    }
-
-    session.user = user;
-    router.push('/messages');
-}
-
-export function Logout() {
-    session.user = null;
-}
-export default session;

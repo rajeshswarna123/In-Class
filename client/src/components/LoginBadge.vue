@@ -1,5 +1,6 @@
 <script setup lang="ts">
-    import session, { Logout } from "../models/session";
+    import  { useSession } from "../models/session";
+    const session = useSession();
 </script>
 
 <template>
@@ -19,7 +20,7 @@
                 <i>{{ session.user.email }}</i>
             </div>
         </div>
-        <a class="button is-primary" @click="Logout()">
+        <a class="button is-primary" @click="session.Logout()">
             <strong>Log out</strong>
         </a>
     </div>
