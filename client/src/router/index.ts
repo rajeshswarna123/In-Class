@@ -38,8 +38,8 @@ router.beforeEach((to, form) =>{
     const protectedUrls = ['/messages', '/wall', '/feed', '/hidden'];
     console.log({ protectedUrls });
 
-    if (protectedUrls.includes(to.path)) { // list of paths that require login
-        console.log('requires login');
+    if (protectedUrls.includes(to.path.toLowerCase())) { // list of paths that require login
+      console.log('requires login');
         if (!session.user) {
             return '/login';
         }

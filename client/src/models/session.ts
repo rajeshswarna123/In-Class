@@ -38,9 +38,13 @@ export const useSession = defineStore('session', {
             router.push('/login');
         },
 
-        async api(url: string, data?: any, method?: 'GET' | 'POST' | 'PUT' | 'DELETE', headers?: any) {
+        async api(url: string, data?: any, method?: 'GET' | 'POST' | 'PUT' | 'DELETE', headers: any = {}) {
             const messages = useMessages();
-
+            
+            if(this.user?.token) {
+                headers.Authorization = `Bearer ${this.user.token}`;
+            }
+            
             try {
                 const response = await api(url, data, method, headers);
                 if(response.errors?.length) {
