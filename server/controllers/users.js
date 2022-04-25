@@ -12,14 +12,14 @@ app
     .get('/', requireAuth, (req, res, next) => {
         userModel.getList()
         .then(users => {
-            res.send(users);
+            res.send({ success: true, errors: [], data: users });
         }).catch(next);
         //res.send(userModel.list);
     })
     .get('/handle/:handle', (req, res, next) => {
         userModel.getByHandle(req.params.handle)
         .then(user => {
-            res.send(user);
+            res.send({ success: true, errors: [], data: user });
         }).catch(next);
         //const user = userModel.get(req.params.id);
         //res.send(user);
@@ -28,7 +28,7 @@ app
     .get('/:id', (req, res, next) => {
         userModel.get(req.params.id)
         .then(user => {
-            res.send(user);
+            res.send({ success: true, errors: [], data: user });
         }).catch(next);
         //const user = userModel.get(req.params.id);
         //res.send(user);
@@ -37,7 +37,7 @@ app
     .post('/', (req, res,next) => {
         userModel.create(req.body)
         .then(user => {
-            res.status(CREATED_STATUS).send(user);
+            res.status(CREATED_STATUS).send({ success: true, errors: [], data: user });
         }).catch(next);
     })
     .delete('/:id', requireAuth, (req, res, next) => {
@@ -57,7 +57,7 @@ app
     .post('/login', (req, res, next) => {
         userModel.login(req.body.email, req.body.password)
         .then(user => {
-            res.send(user);
+            res.send({ success: true, errors: [], data: user });
         }).catch(next);
     })
     .post('/seed', (req, res, next) => {

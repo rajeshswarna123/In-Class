@@ -35,7 +35,7 @@
     }
     .notification {
         margin: .5rem;
-        width: 100%;
+        width: calc(100% - 1rem);
     }
     .tag {
         position: absolute;
